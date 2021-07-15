@@ -21,6 +21,16 @@ or alternatively using `brew install fastlane`
 fastlane android test
 ```
 Runs all the tests
+### android coverage_test
+```
+fastlane android coverage_test
+```
+Runs jacoco coverage test
+### android sonar_report
+```
+fastlane android sonar_report
+```
+Executes sonarqube uploads
 ### android beta
 ```
 fastlane android beta
