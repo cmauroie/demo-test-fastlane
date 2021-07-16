@@ -29,6 +29,11 @@ platform :android do
     gradle(task: "test")
   end
 
+  desc "Runs all the tests module one"
+    lane :test_modole_one do
+      gradle(task: "testModuleoneDebugUnitTest")
+    end
+
   desc "Runs jacoco coverage test"
     lane :coverage_test do
       gradle(task: "jacocoTestReport --stacktrace")

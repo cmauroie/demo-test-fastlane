@@ -1,2 +1,3 @@
 rootProject.name = "Demo test fastline"
 include ':app'
+include ':moduleone'
