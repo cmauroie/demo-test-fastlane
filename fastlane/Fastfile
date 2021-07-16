@@ -13,6 +13,14 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+#Constants
+project_key = ENV['PROJECT_KEY']
+sonar_login = ENV['SONAR_LOGIN']
+sonar_url = ENV['SONAR_URL']
+includes_path = File.expand_path("../app/build/")
+source_path = File.expand_path("../app/src/main/java/com/fis/demotestfastline/")
+sonar_args = "-Dsonar.coverage.jacoco.xmlReportPaths=#{includes_path}/reports/jacoco/test/jacocoTestReport.xml" #Additional optional: -Dsonar.jacoco.reportPath=#{includes_path}/jacoco/testDebugUnitTest.exec
+
 default_platform(:android)
 
 platform :android do
@@ -20,6 +28,28 @@ platform :android do
   lane :test do
     gradle(task: "test")
   end
+
+  desc "Runs jacoco coverage test"
+    lane :coverage_test do
+      gradle(task: "jacocoTestReport --stacktrace")
+    end
+
+  desc "Executes sonarqube uploads"
+      lane :sonar_report do
+        #Performs test coverage
+        coverage_test()
+
+        #Performs sonarqube process
+        sonar(
+          project_key: "#{project_key}",
+          project_version: "1.0",
+          project_name: "#{project_key}",
+          sources_path: "#{source_path}",
+          sonar_runner_args: "#{sonar_args}",
+          sonar_login: "#{sonar_login}",
+          sonar_url: "#{sonar_url}"
+        )
+      end
 
   desc "Submit a new Beta Build to Crashlytics Beta"
   lane :beta do
