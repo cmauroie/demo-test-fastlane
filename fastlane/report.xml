@@ -5,22 +5,12 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.001884">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.0042386">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: Switch to android coverage_test lane" time="0.000204">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="2: jacocoTestReport --stacktrace" time="5.247941">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="3: sonar" time="9.479049">
+      <testcase classname="fastlane.lanes" name="1: testModuleoneDebugUnitTest" time="55.8071107">
         
       </testcase>
     
