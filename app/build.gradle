@@ -76,6 +76,12 @@ android {
         moduleone{
 
         }
+        moduletwo{
+
+        }
+        modulethree{
+
+        }
     }
 }
 
