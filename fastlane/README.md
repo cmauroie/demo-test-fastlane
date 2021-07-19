@@ -26,6 +26,16 @@ Runs all the tests
 fastlane android test_modole_one
 ```
 Runs all the tests module one
+### android test_modole_two
+```
+fastlane android test_modole_two
+```
+Runs all the tests module two
+### android test_modole_three
+```
+fastlane android test_modole_three
+```
+Runs all the tests module three
 ### android coverage_test
 ```
 fastlane android coverage_test

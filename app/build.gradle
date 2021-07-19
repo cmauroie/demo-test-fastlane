@@ -104,6 +104,12 @@ android {
         moduleone{
 
         }
+        moduletwo{
+
+        }
+        modulethree{
+
+        }
     }
 }
 

@@ -1,3 +1,5 @@
 rootProject.name = "Demo test fastline"
 include ':app'
 include ':moduleone'
+include ':moduletwo'
+include ':modulethree'
