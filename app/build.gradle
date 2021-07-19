@@ -5,25 +5,53 @@ plugins {
     id 'jacoco'
 }
 
-//jacoco coverage test task
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+// A resolvable configuration to collect source code
+def sourcesPath = configurations.create("sourcesPath") {
+    visible = false
+    canBeResolved = true
+    canBeConsumed = false
+    extendsFrom(configurations.implementation)
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category, Category.DOCUMENTATION))
+        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named(DocsType, 'source-folders'))
+    }
+}
+
+// A resolvable configuration to collect JaCoCo coverage data
+def coverageDataPath = configurations.create("coverageDataPath") {
+    visible = false
+    canBeResolved = true
+    canBeConsumed = false
+    extendsFrom(configurations.implementation)
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category, Category.DOCUMENTATION))
+        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named(DocsType, 'jacoco-coverage-data'))
+    }
+}
+
+// Task to gather code coverage from multiple subprojects
+def jacocoTestReport = tasks.register('jacocoTestReport', JacocoReport) {
+    additionalClassDirs(files(subprojects.sourceSets.main.allSource.classDirs))
+    additionalSourceDirs(sourcesPath.incoming.artifactView { lenient(true) }.files)
+    executionData(coverageDataPath.incoming.artifactView { lenient(true) }.files.filter { it.exists() })
 
     reports {
-        xml.enabled = true
-        xml.destination = file("build/reports/jacoco/test/jacocoTestReport.xml")
-        html.enabled = true
+        // xml is usually used to integrate code coverage with
+        // other tools like SonarQube, Coveralls or Codecov
+        xml.required = true
+        xml.destination file("${rootProject.projectDir}/build/reports/jacoco/test/jacocoTestReport.xml")
+
+        // HTML reports can be used to see code coverage
+        // without any external tools
+        html.required = true
     }
+}
 
-    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
-    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
-    def mainSrc = "${project.projectDir}/src/main/java"
-
-    sourceDirectories.setFrom(files([mainSrc]))
-    classDirectories.setFrom(files([debugTree]))
-    executionData.setFrom(fileTree(dir: "$buildDir", includes: [
-            "jacoco/testDebugUnitTest.exec",
-            "outputs/code-coverage/connected/*coverage.ec"
-    ]))
+// Make JaCoCo report generation part of the 'check' lifecycle phase
+tasks.named("check") {
+    dependsOn(jacocoTestReport)
 }
 
 android {
