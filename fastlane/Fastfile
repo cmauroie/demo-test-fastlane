@@ -46,7 +46,7 @@ platform :android do
 
   desc "Runs jacoco coverage test"
     lane :coverage_test do
-      gradle(task: "jacocoTestReport --stacktrace")
+      gradle(task: "check --stacktrace")
     end
 
   desc "Executes sonarqube uploads"

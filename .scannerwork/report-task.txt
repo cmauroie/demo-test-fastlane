@@ -2,5 +2,5 @@ projectKey=com.fis.demotestfastline
 serverUrl=http://localhost:9000
 serverVersion=8.9.1.44547
 dashboardUrl=http://localhost:9000/dashboard?id=com.fis.demotestfastline
-ceTaskId=AXqsaROak71u8w2-ZYxs
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXqsaROak71u8w2-ZYxs
+ceTaskId=AXq_yoKVgzrJWQuiBIIB
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXq_yoKVgzrJWQuiBIIB
