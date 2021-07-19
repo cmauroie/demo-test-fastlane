@@ -34,6 +34,16 @@ platform :android do
       gradle(task: "testModuleoneDebugUnitTest")
     end
 
+  desc "Runs all the tests module two"
+    lane :test_modole_two do
+      gradle(task: "testModuletwoDebugUnitTest")
+    end
+
+  desc "Runs all the tests module three"
+    lane :test_modole_three do
+      gradle(task: "testModulethreeDebugUnitTest")
+    end
+
   desc "Runs jacoco coverage test"
     lane :coverage_test do
       gradle(task: "jacocoTestReport --stacktrace")
