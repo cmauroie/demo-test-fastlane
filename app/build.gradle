@@ -33,6 +33,7 @@ def coverageDataPath = configurations.create("coverageDataPath") {
 
 // Task to gather code coverage from multiple subprojects
 def jacocoTestReport = tasks.register('jacocoTestReport', JacocoReport) {
+    dependsOn("testModuleoneDebugUnitTest","createModuleoneDebugCoverageReport")
     additionalClassDirs(files(subprojects.sourceSets.main.allSource.classDirs))
     additionalSourceDirs(sourcesPath.incoming.artifactView { lenient(true) }.files)
     executionData(coverageDataPath.incoming.artifactView { lenient(true) }.files.filter { it.exists() })
