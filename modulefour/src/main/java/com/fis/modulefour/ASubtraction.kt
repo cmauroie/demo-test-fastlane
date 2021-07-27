@@ -1,6 +1,6 @@
-package com.fis.moduleone
+package com.fis.modulefour
 
-class Subtraction {
+class ASubtraction {
     fun execute(a:Int, b: Int) : Int {
         return a - b
     }

@@ -3,7 +3,7 @@ package com.fis.moduleone
 import org.junit.Assert.*
 import org.junit.Test
 
-class ExampleUniTest {
+class SubtractionTest {
     @Test
     fun subtraction_isCorrect() {
         val subtraction = Subtraction()
