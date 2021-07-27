@@ -18,8 +18,8 @@ project.afterEvaluate {
 
         tasks.create(name: "${unitTestTask}Coverage", type: JacocoReport, dependsOn: [
                 "$unitTestTask",
-                "$uiTestCoverageTask"
-                //":module1:testDebugUnitTest"
+                "$uiTestCoverageTask",
+                ":modulefour:testDebugUnitTest"
                 //":module2:testDebugUnitTest",
                 //":moduleN:testDebugUnitTest",
         ]) {
@@ -66,8 +66,8 @@ project.afterEvaluate {
             ]
 
             classDirectories.setFrom(files([
-                    fileTree(dir: "${buildDir}/tmp/kotlin-classes/${variantName}", excludes: fileFilter)
-                   // fileTree(dir: "$project.rootDir/module1/build/tmp/kotlin-classes/debug", excludes: fileFilter)
+                    fileTree(dir: "${buildDir}/tmp/kotlin-classes/${variantName}", excludes: fileFilter),
+                    fileTree(dir: "$project.rootDir/modulefour/build/tmp/kotlin-classes/debug", excludes: fileFilter)
                   //  fileTree(dir: "$project.rootDir/module2/build/tmp/kotlin-classes/debug", excludes: fileFilter),
                   //  fileTree(dir: "$project.rootDir/moduleN/build/tmp/kotlin-classes/debug", excludes: fileFilter),
             ]))
@@ -75,7 +75,7 @@ project.afterEvaluate {
             def coverageSourceDirs = [
                     "$project.rootDir/app/src/main/java",
                     "$project.projectDir/src/${variantName}/java",
-                    //"$project.rootDir/module1/src/main/java"
+                    "$project.rootDir/modulefour/src/main/java"
                     //"$project.rootDir/module2/src/main/java",
                     //"$project.rootDir/moduleN/src/main/java"
             ]
@@ -86,8 +86,8 @@ project.afterEvaluate {
 
             executionData(files([
                     "$project.buildDir/jacoco/${unitTestTask}.exec",
-                    uiTestsData
-                    //"$project.rootDir/module1/build/jacoco/testDebugUnitTest.exec"
+                    uiTestsData,
+                    "$project.rootDir/modulefour/build/jacoco/testDebugUnitTest.exec"
                     //"$project.rootDir/module2/build/jacoco/testDebugUnitTest.exec",
                     //"$project.rootDir/moduleN/build/jacoco/testDebugUnitTest.exec"
             ]))
