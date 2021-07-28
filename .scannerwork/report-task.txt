@@ -1,6 +1,6 @@
 projectKey=com.fis.demotestfastline
-serverUrl=http://localhost:9000
+serverUrl=http://3f116862a5d6.ngrok.io
 serverVersion=8.9.1.44547
-dashboardUrl=http://localhost:9000/dashboard?id=com.fis.demotestfastline
-ceTaskId=AXq_yoKVgzrJWQuiBIIB
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXq_yoKVgzrJWQuiBIIB
+dashboardUrl=http://3f116862a5d6.ngrok.io/dashboard?id=com.fis.demotestfastline
+ceTaskId=AXruQ72dF6djKhe_jVde
+ceTaskUrl=http://3f116862a5d6.ngrok.io/api/ce/task?id=AXruQ72dF6djKhe_jVde

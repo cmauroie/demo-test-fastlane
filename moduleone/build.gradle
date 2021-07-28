@@ -3,17 +3,12 @@ plugins {
     id 'kotlin-android'
 }
 
-apply from: "$project.rootDir/jacoco.gradle"
+apply from: "${project.rootDir}/jacoco.gradle"
 
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
-    buildTypes {
-        debug {
-            testCoverageEnabled true
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -21,18 +16,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
-    /*testOptions {
-        unitTests {
-            includeAndroidResources = true
-            unitTests.returnDefaultValues = true
-        }
-    }*/
-
     testOptions {
         unitTests.all {
             unitTests.returnDefaultValues = true
-
             //ignoreFailures = true
             //useJUnitPlatform()
         }
@@ -42,6 +28,6 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     testImplementation 'junit:junit:4.+'
-    //androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     //androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

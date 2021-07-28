@@ -5,7 +5,7 @@ class Subtraction {
         return a - b
     }
 
-    fun execute2(a:Int, b: Int) : Int {
+    fun executeCopy(a:Int, b: Int) : Int {
         return a - b
     }
 }

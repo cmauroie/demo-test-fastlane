@@ -19,7 +19,7 @@ sonar_login = ENV['SONAR_LOGIN']
 sonar_url = ENV['SONAR_URL']
 includes_path = File.expand_path("../app/build/")
 source_path = File.expand_path("../app/src/main/java/com/fis/demotestfastline/")
-sonar_args = "-Dsonar.coverage.jacoco.xmlReportPaths=#{includes_path}/reports/jacoco/test/jacocoTestReport.xml" #Additional optional: -Dsonar.jacoco.reportPath=#{includes_path}/jacoco/testDebugUnitTest.exec
+sonar_args = "-Dsonar.coverage.jacoco.xmlReportPaths=#{includes_path}/reports/jacoco-full/xml/jacocoTestReport.xml" #Additional optional: -Dsonar.jacoco.reportPath=#{includes_path}/jacoco/testDebugUnitTest.exec
 
 default_platform(:android)
 
@@ -46,7 +46,11 @@ platform :android do
 
   desc "Runs jacoco coverage test"
     lane :coverage_test do
-      gradle(task: "check --stacktrace")
+      #Performs coverage report generation per module
+      gradle(task: "jacocoReport --stacktrace")
+
+      #Performs coverage report for all modules
+      gradle(task: "jacocoFullReport --stacktrace")
     end
 
   desc "Executes sonarqube uploads"
