@@ -5,22 +5,27 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.001137">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.001091">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: Switch to android coverage_test lane" time="0.000228">
+      <testcase classname="fastlane.lanes" name="1: Switch to android coverage_test lane" time="0.000269">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: check --stacktrace" time="10.254805">
+      <testcase classname="fastlane.lanes" name="2: jacocoReport --stacktrace" time="15.298819">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: sonar" time="6.723955">
+      <testcase classname="fastlane.lanes" name="3: jacocoFullReport --stacktrace" time="4.185923">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: sonar" time="14.725666">
         
       </testcase>
     

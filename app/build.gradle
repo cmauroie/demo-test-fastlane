@@ -1,74 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    //Jacoco tests
-    id 'jacoco'
 }
-
-apply from: "$project.rootDir/jacoco.gradle"
-
-// A resolvable configuration to collect source code
-/*def sourcesPath = configurations.create("sourcesPath") {
-    visible = false
-    canBeResolved = true
-    canBeConsumed = false
-    extendsFrom(configurations.implementation)
-    attributes {
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_RUNTIME))
-        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category, Category.DOCUMENTATION))
-        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named(DocsType, 'source-folders'))
-    }
-}*/
-
-// A resolvable configuration to collect JaCoCo coverage data
-/*def coverageDataPath = configurations.create("coverageDataPath") {
-    visible = false
-    canBeResolved = true
-    canBeConsumed = false
-    extendsFrom(configurations.implementation)
-    attributes {
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_RUNTIME))
-        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category, Category.DOCUMENTATION))
-        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named(DocsType, 'jacoco-coverage-data'))
-    }
-}*/
-
-// Task to gather code coverage from multiple subprojects
-/*def jacocoTestReport = tasks.register('jacocoTestReport', JacocoReport) {
-    dependsOn("testDebugUnitTest","createDebugCoverageReport")
-    additionalClassDirs(files(subprojects.sourceSets.main.allSource.classDirs))
-    additionalSourceDirs(sourcesPath.incoming.artifactView { lenient(true) }.files)
-    executionData(coverageDataPath.incoming.artifactView { lenient(true) }.files.filter { it.exists() })
-
-    reports {
-        // xml is usually used to integrate code coverage with
-        // other tools like SonarQube, Coveralls or Codecov
-        xml.enabled = true
-        xml.destination file("${rootProject.projectDir}/build/reports/jacoco/test/jacocoTestReport.xml")
-
-        // HTML reports can be used to see code coverage
-        // without any external tools
-        html.enabled = true
-    }
-    *//*def javaClasses = fileTree(dir: variant.javaCompileProvider.get().destinationDir,
-            excludes: excludes)
-    def kotlinClasses = fileTree(dir: "${buildDir}/tmp/kotlin-classes/${variantName}",
-            excludes: excludes)
-
-    classDirectories.setFrom(files([
-            javaClasses,
-            kotlinClasses
-    ]))*//*
-}*/
-
-// Make JaCoCo report generation part of the 'check' lifecycle phase
-/*tasks.named("check") {
-    dependsOn(jacocoTestReport)
-}*/
-
-/*jacoco {
-    toolVersion = "0.8.5"
-}*/
 
 android {
     compileSdkVersion 30
@@ -106,36 +39,15 @@ android {
             includeAndroidResources = true
             unitTests.returnDefaultValues = true
         }
-        /*unitTests.all {
-            jacoco {
-                includeNoLocationClasses = true
-                jacoco.excludes = ['jdk.internal.*']
-            }
-            reports {
-                junitXml.enabled = true
-                html.enabled = false
-            }
-        }
-        unitTests.returnDefaultValues = true*/
     }
 
-    flavorDimensions "version"
-   /* productFlavors{
-        moduleone{
-
-        }
-        moduletwo{
-
-        }
-        modulethree{
-
-        }
-    }*/
 }
 
 
 dependencies {
-    //moduleoneImplementation project(":moduleone")
+    implementation project(":moduleone")
+    implementation project(":moduletwo")
+    implementation project(":modulethree")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.1'
